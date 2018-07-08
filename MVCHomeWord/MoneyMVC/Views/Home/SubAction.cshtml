@@ -1,0 +1,30 @@
+﻿@model MoneyMVC.Models.ViewModels.Grids
+
+<div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>#</th>
+                    <th>類別</th>
+                    <th>日期</th>
+                    <th>金額</th>
+                </tr>
+                @{
+                    foreach (var m in (List<MoneyMVC.Models.ViewModels.Grids>)ViewData["Data"])
+                    {
+                        <tr>
+                            <td>@m.No</td>
+                            <td>@m.Type</td>
+                            <td>@m.Date</td>
+                            <td>@m.Price</td>
+                        </tr>
+                    };
+                }
+
+            </table>
+        </div>
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
