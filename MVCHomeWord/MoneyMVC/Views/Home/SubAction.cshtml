@@ -1,4 +1,4 @@
-﻿@model MoneyMVC.Models.ViewModels.MoneyViewModel
+﻿@model IEnumerable<MoneyMVC.Models.ViewModels.MoneyViewModel>
 
 <div class="row">
         <div class="col-md-12">
@@ -10,13 +10,13 @@
                     <th>金額</th>
                 </tr>
                 @{
-                    foreach (var m in (List<MoneyMVC.Models.ViewModels.MoneyViewModel>)ViewData["Data"])
+                    foreach (var m in Model)
                     {
                         <tr>
                             <td>@m.No</td>
                             <td>@m.Type</td>
-                            <td>@m.Date</td>
-                            <td>@m.Price</td>
+                            <td>@m.Date.ToString("yyyy-MM-dd")</td>
+                            <td>@m.Price.ToString("N0")</td>
                         </tr>
                     };
                 }
