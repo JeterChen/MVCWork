@@ -20,7 +20,7 @@ namespace MoneyMVC.Controllers
         public ActionResult SubAction()
         {
             
-            var result = HomeService.grids;
+            var result =new HomeService();
 
             ViewData["Data"] = result;
 
