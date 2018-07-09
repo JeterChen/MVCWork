@@ -1,4 +1,4 @@
-﻿@model MoneyMVC.Models.ViewModels.Grids
+﻿@model MoneyMVC.Models.ViewModels.MoneyViewModel
 
 
 @using (Html.BeginForm())
@@ -15,7 +15,7 @@
                     <th>金額</th>
                 </tr>
                 @{ 
-                    foreach(var m in (List<MoneyMVC.Models.ViewModels.Grids>)ViewData["Data"])
+                    foreach(var m in (List<MoneyMVC.Models.ViewModels.MoneyViewModel>)ViewData["Data"])
                     {
                         <tr>
                             <td>@m.No</td>

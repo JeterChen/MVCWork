@@ -20,11 +20,9 @@ namespace MoneyMVC.Controllers
         public ActionResult SubAction()
         {
             
-            var result = HomeService.grids;
+            var result =new HomeService().LookupAllData();
 
-            ViewData["Data"] = result;
-
-            return View();
+            return View(result);
         }
 
         public ActionResult About()
