@@ -13,24 +13,20 @@ namespace MoneyMVC.Controllers
 {
     public class MoneyController : Controller
     {
-        private readonly MoneyService _ImoneyService;
+        private readonly MoneyService _imoneyService;
         private readonly UnitOfWork _unitOfWork;
 
         public MoneyController()
         {
             _unitOfWork = new UnitOfWork();
-            _ImoneyService = new MoneyService(_unitOfWork);
+            _imoneyService = new MoneyService(_unitOfWork);
         }
 
         // GET: Money
         public ActionResult Index()
         {
-
-            var categoryResource = GetCategoryList();
-            var pageDropDownList = GetPageDropDownList();
-
-            ViewData["CategoryItems"] = categoryResource;
-            ViewData["PageItems"] = pageDropDownList;
+            ViewData["CategoryItems"] = GetCategoryList();
+            ViewData["PageItems"] = GetPageDropDownList();
             return View();
         }
 
@@ -44,7 +40,7 @@ namespace MoneyMVC.Controllers
             /***不知道為什麼model裡面的Type都是None???***/
             if (ModelState.IsValid)
             {
-                _ImoneyService.Add(model);
+                _imoneyService.Add(model);
                 _unitOfWork.Commit();
                 return RedirectToAction("Index");
             }
@@ -56,7 +52,7 @@ namespace MoneyMVC.Controllers
         public ActionResult ListAction(int page)
         {
             int pagesize = 10;
-            var result = _ImoneyService.LookupByPageList(page, pagesize);
+            var result = _imoneyService.LookupByPageList(page, pagesize);
 
             return View(result);
         }
@@ -64,7 +60,7 @@ namespace MoneyMVC.Controllers
         private SelectList GetPageDropDownList()
         {
             int pagesize = 10;
-            var sources = _ImoneyService.LookupAllData();
+            var sources = _imoneyService.LookupAllData();
 
             var pageResult = sources.Select((item, inx) => new { item, inx })
                                  .GroupBy(x => x.inx / pagesize)
