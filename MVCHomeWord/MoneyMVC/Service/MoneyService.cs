@@ -34,6 +34,7 @@ namespace MoneyMVC.Service
 
         public IEnumerable<MoneyViewModel> LookupByPageList(int page, int pagesize)
         {
+            //你根本沒用到他耶
             int currentPage = page < 1 ? 1 : page;
 
             var source = _accountBookRepository.LookupAll().OrderBy(b => b.Dateee).AsEnumerable();
@@ -75,13 +76,12 @@ namespace MoneyMVC.Service
 
         public void Add(MoneyViewModel vo)
         {
-            Guid _id = Guid.NewGuid();
             if(vo != null)
             {
 
                 AccountBook accountBook = new AccountBook
                 {
-                    Id = _id,
+                    Id =  Guid.NewGuid(),//既然你沒有要傳出去，你宣告變數幹啥？
                     Amounttt = vo.Price,
                     Categoryyy = vo.Type == CategoryType.Expenditure ? 0 : 1,
                     Dateee = vo.Date,
@@ -94,8 +94,9 @@ namespace MoneyMVC.Service
 
         public void Edit(Guid id, MoneyViewModel vo)
         {
-            if(vo != null)
+            if(vo != null)//這命名好爛.....
             {
+                //你用 GetSingle 沒拿到就拋例外了，後面的檢查不會跑到
                 var oldData = _accountBookRepository.GetSingle(a => a.Id == id);
 
                 if (oldData != null)
