@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
 
 namespace MoneyMVC.Controllers
 {
@@ -78,24 +79,9 @@ namespace MoneyMVC.Controllers
 
         }
 
-        private SelectList GetCategoryList()
+        private IList<SelectListItem> GetCategoryList()
         {
-            Dictionary<string, int?> _resuouces = new Dictionary<string, int?>
-            {
-                [CategoryType.None.GetDisplayName()] = null,
-                [CategoryType.Expenditure.GetDisplayName()] = 0,
-                [CategoryType.Income.GetDisplayName()] = 1
-            };
-
-            var categoryListItems = _resuouces.Select((k) =>
-                  new MoneyCategoryViewModel
-                  {
-                      name = k.Key,
-                      value = k.Value
-                  }
-            );
-
-            return new SelectList(categoryListItems, "value", "name", 1); ;
+            return EnumHelper.GetSelectList(typeof(CategoryType));
         }
 
     }
