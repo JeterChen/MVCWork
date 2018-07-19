@@ -14,7 +14,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => Model.Type, "類別", htmlAttributes: new { @class = "col-md-2 control-label " })
                 <div class="col-sm-10">
-                    @Html.DropDownList("Category", (IEnumerable<SelectListItem>)ViewData["CategoryItems"], new { @class = "form-control" })
+                    @Html.DropDownList("Type", (IEnumerable<SelectListItem>)ViewData["CategoryItems"], new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
@@ -43,7 +43,7 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-11 col-sm-4">
-                    <button type="submit" onclick="return confirm('是否確定新增');" class="btn btn-default">送出</button>
+                    <button onclick="return confirm('是否確定新增');" class="btn btn-default">送出</button>
                 </div>
             </div>
         </div>
@@ -63,6 +63,8 @@
 
 @section scripts
 {
+    @Scripts.Render("~/bundles/jqueryval")
+
     <script>
         function pagechange() {
             var x = document.getElementById("pagelist");
@@ -80,8 +82,6 @@
         }
     </script>
 }
-
-
 
 
 
