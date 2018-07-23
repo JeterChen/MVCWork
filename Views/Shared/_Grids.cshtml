@@ -1,0 +1,45 @@
+﻿@using MoneyMVC.Extensions
+@model List<MoneyMVC.Models.ViewModels.MoneyViewModel>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th>#</th>
+                    <th>類別</th>
+                    <th>日期</th>
+                    <th>金額</th>
+                </tr>
+                @{ 
+                    var index = 1;
+                }
+                @{ 
+                    foreach(var m in Model)
+                    {
+                        <tr>
+                            <td>@index</td>
+                            <td>@(m.Type.GetDisplayName())</td>
+                            <td>@m.Date.ToString("yyyy-MM-dd")</td>
+                            <td>@m.Price.ToString("N0")</td>
+                        </tr>
+
+                        index++;
+                    };
+                }
+                
+            </table>
+        </div>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
